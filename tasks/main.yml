@@ -1,0 +1,10 @@
+- name: Print File Contents
+  debug:
+    var: file
+- name: Create appropriate contents from template for 'oc patch' command
+  template:
+    src: oc-patch.json.j2
+    dest: /tmp/oc-patch.json
+- name: Add file to the specified config map
+  shell: oc patch configmap {{ configmap }} -p {{ lookup('file', '/tmp/oc-patch.json') | quote }} -n {{ namespace }}
+  register: result
