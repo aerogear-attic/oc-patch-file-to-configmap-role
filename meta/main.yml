@@ -1,0 +1,10 @@
+galaxy_info:
+  author: AeroGear
+  description: Place a .json file into an existing configmap
+  company: Red Hat
+  license: license (MIT)
+  min_ansible_version: 1.2
+  galaxy_tags:
+  - OpenShift
+  - Kubernetes
+dependencies: []
