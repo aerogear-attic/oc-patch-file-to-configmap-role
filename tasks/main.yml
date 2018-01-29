@@ -17,5 +17,12 @@
 
   - name: Add file to the specified config map
     shell: oc patch configmap {{ configmap }} -p {{ lookup('file', '/tmp/oc-patch.json') | quote }} -n {{ namespace }}
+    ignore_errors: yes
+    register: oc_patch_result
+
+  - name: Print Debug info about failed oc patch operation
+    debug:
+      var: oc_patch_result
+    when: oc_patch_result.rc != 0
 
   when: check_configmap.rc == 0
